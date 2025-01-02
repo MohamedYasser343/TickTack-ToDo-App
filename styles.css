@@ -1,0 +1,416 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+
+}
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -500px; /* Initially hidden off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  color: rgb(255, 255, 255);
+  padding: 40px;
+  transition: left 0.3s ease;
+  z-index: 1000; /* Ensure sidebar is on top */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+  color: #000000;
+  margin-bottom: 1em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+  color: #000000;
+  transform: scale(1.1);
+  background-color: rgba(229, 224, 224, 0.858);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+  position: fixed;
+  top: 10px; /* Adjusted position to avoid overlap with Categories */
+  left: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 2000; /* Ensure the button is on top of the sidebar */
+  background-color: transparent; /* Optional: Add background to improve visibility */
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  border-radius: 100%;
+  box-shadow: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  color: rgb(4, 4, 4);
+  transform: scale(1.5); /* Interaction: slight zoom */
+}
+
+.sidebar-toggle.active {
+  transform: rotate(90deg); /* Rotate the toggle icon when active */
+}
+
+/* Show sidebar when it's toggled */
+.sidebar.active {
+  left: 0;
+}
+
+/* Main content area */
+.main-content {
+  margin-left: 0; /* Initially no margin */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Adjust main content when sidebar is active */
+.sidebar.active + .main-content {
+  margin-left: 250px; /* Space for the sidebar */
+}
+
+/* Optionally, darken the background when sidebar is open */
+.sidebar.active + .main-content::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+
+/* Smooth darken effect */
+body.sidebar-open {
+  margin-left: 250px; /* Matches sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
+/* Dark mode styles for the sidebar */
+body.dark-mode .sidebar {
+  background-color: #000000; /* Darker background for the sidebar */
+  color: #e0e0e0; /* Lighter text for the sidebar */
+}
+body.dark-mode .sidebar h2 {
+  color: #e0e0e0; /* Lighter text color for the links */
+}
+body.dark-mode .sidebar ul li a {
+  color: #e0e0e0; /* Lighter text color for the links */
+}
+
+body.dark-mode .sidebar ul li a:hover {
+  color: #fff; /* Hover color for the sidebar links */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode toggle button styles */
+body.dark-mode .sidebar-toggle {
+  color: #ffffff; /* Light color for the toggle button */
+}
+
+body.dark-mode .sidebar-toggle:hover {
+  color: #fff; /* Light icon color on hover */
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.container {
+  flex: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 2em;
+  font-size: 1.2em;
+}
+
+ul.task-list {
+  list-style: none;
+  padding: 0;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--task-bg-color);
+  border: 1px solid var(--task-border-color);
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px; /* Adds space between buttons */
+  align-items: center; /* Aligns buttons vertically */
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center; /* Ensures icons are vertically centered */
+  justify-content: center; /* Ensures icons are horizontally centered */
+}
+
+.btn i {
+  font-size: 1rem; /* Adjust icon size if needed */
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.edit-btn i {
+  color: #2f07cf; /* Yellow for edit */
+}
+
+.delete-btn i {
+  color: #dc3545; /* Red for delete */
+}
+
+.complete-btn i {
+  color: #28a745; /* Green for complete */
+}
+
+.star-btn i {
+  color: #ffd000; /* Gold for star */
+}
+
+body.dark-mode .star-btn i {
+  color: #ffd000; /* Color for dark mode */
+}
+
+.gold {
+  color: gold; /* Gold color for the filled star */
+}
+footer {
+  text-align: center;
+  padding: 5px;
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.floating-button, .theme-toggle {
+  color: rgb(97, 4, 179);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+  position: fixed;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 50%;
+  right: 70px;
+  top: 55%;
+  transform: translate(50%, -50%);
+}
+
+.floating-button.rotate {
+  transform: translate(50%, -50%) rotate(45deg);
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 50%;
+  right: 70px;
+  top: 45%;
+  transform: translate(50%, -50%);
+}
+
+.theme-toggle.rotated {
+  transform: translate(50%, -50%) rotate(180deg);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5;
+}
+
+.modal-content {
+  background-color: var(--modal-bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  transition: background-color 0.3s;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+input[type="text"], input[type="datetime-local"], textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="text"]:focus, input[type="datetime-local"]:focus, textarea:focus {
+  border-color: var(--input-border-focus-color);
+}
+
+button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, color 0.3s;
+  display: block;
+  margin: 0 auto;
+  margin-top: auto;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+}
+
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #333;
+  --task-bg-color: #fff;
+  --task-border-color: #ddd;
+  --footer-bg-color: #b0b0b0;
+  --footer-text-color: #000000;
+  --floating-button-bg: #007bff;
+  --floating-button-color: #fff;
+  --modal-bg-color: #fff;
+  --button-bg-color: #007bff;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #0056b3;
+  --button-hover-text-color: #fff;
+  --input-border-color: #ccc;
+  --input-border-focus-color: #007bff;
+  --action-link-color: #007bff;
+  --action-link-hover-color: #0056b3;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --task-bg-color: #333;
+  --task-border-color: #444;
+  --footer-bg-color: #222;
+  --footer-text-color: #e0e0e0;
+  --floating-button-bg: #e0e0e0;
+  --floating-button-color: #121212;
+  --modal-bg-color: #333;
+  --button-bg-color: #e0e0e0;
+  --button-text-color: #121212;
+  --button-hover-bg-color: #fff;
+  --button-hover-text-color: #000;
+  --input-border-color: #555;
+  --input-border-focus-color: #e0e0e0;
+  --action-link-color: #e0e0e0;
+  --action-link-hover-color: #fff;
+}

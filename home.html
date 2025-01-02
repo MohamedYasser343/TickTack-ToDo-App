@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍩FORGET</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar-toggle" id="sidebar-toggle">☰</div>
+    <aside class="sidebar hidden" id="sidebar">
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="important.html">🌟 Important Tasks</a></li>
+            <li><a href="complete.html">✅ Completed Tasks</a></li>
+            <li><a href="delete.html">🗑️ Deleted Tasks</a></li>
+            <li><a href="home.html">📋 All Tasks</a></li>
+        </ul>
+    </aside>
+    <div class="app-container">
+    <div class="container">
+        <header>
+            <h1>🍩FORGET</h1>
+            <p class="description">A simple and user-friendly task manager to keep track of your to-dos.</p>
+        </header>
+        <main>
+            {% if tasks and tasks.length > 0 %}
+                <ul class="task-list">
+                    {% for task in tasks %}
+                        <li class="task {% if task.complete %}complete{% endif %}">
+                            <div class="task-content">
+                                <span>{{ task.task }}</span>
+                                <div class="task-actions">
+                                        <buttom class="btn edit-btn"><i class="fas fa-edit"></i></buttom>
+                                        <buttom class="btn delete-btn"><i class="fas fa-trash"></i></buttom>
+                                        <buttom class="btn complete-btn" data-id="{{ task.id }}"><i class="fas fa-check"></i></buttom>
+                                        <buttom class="btn star-btn" onclick="toggleImportant(this)"><i class="far fa-star"></i></buttom>
+
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-tasks-message">
+                    <p>It looks like you don't have any tasks yet.</p>
+                    <p>Click the <span class="add-icon">➕</span> button to start planning your tasks!</p>
+                </div>
+            {% endif %}
+        </main>
+        
+    </div>
+    <div class="floating-button" onclick="toggleModal()">+</div>
+    <div class="theme-toggle" id="theme-toggle">🌓</div>
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Task</h2>
+            </div>
+            <form id="task-form" action="/add" method="POST">
+                <label for="task">Task</label>
+                <input type="text" id="task" name="task" placeholder="Task" required>
+                <label for="deadline">Deadline</label>
+                <input type="datetime-local" id="deadline" name="deadline">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Description"></textarea>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

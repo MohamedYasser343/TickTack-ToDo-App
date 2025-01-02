@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Register</title>
+     <link rel="stylesheet" href="style1.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+ </head>
+ <body>
+     <div class="login-container">
+         <div class="info-section">
+             <h1>🍩FORGET</h1>
+             <p>To Do gives you focus, from work to play.</p>
+         </div>
+         <div class="form-section">
+             <form onsubmit="handleSubmit(event)">
+                 <div class="form-group">
+                     <label for="username"><i class="fa-duotone fa-solid fa-user fa-fade icon"></i>Username</label>
+                     <input type="text" id="username" required>
+                 </div>
+                 <div class="form-group">
+                  <label for="password"><i class="fa-solid fa-lock icon"></i>Password</label>
+                  <div class="password-wrapper">
+                    <input type="password" id="password" required>
+                    <button id="toggle-password" aria-label="Toggle password visibility">👁️</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="confirm-password"><i class="fa-solid fa-lock icon"></i>Confirm Password</label>
+                  <div class="password-wrapper">
+                    <input type="password" id="confirm-password" required>
+                    <button id="toggle-confirm-password" aria-label="Toggle confirm password visibility">👁️</button>
+                    <span id="password-error" class="error-message"></span>
+                  </div>
+              </div>
+                 <div class="password-strength">
+                  <span id="strength-text">Password Strength: </span>
+                  <span id="strength-level"></span>
+              </div>
+                 <div class="form-group">
+                     <label for="email"><i class="fa-solid fa-at fa-fade icon"></i>Email</label>
+                     <input type="email" id="email" required>
+                 </div>
+                 <button type="submit" id="register-button">Register <i class="fa-duotone fa-solid fa-registered"></i></button>
+                 <div class="spinner" id="loadingIndicator" style="display: none;"></div>
+                 <p>Already have an account? <a href="login.html">Login</a>.</p>
+             </form>
+         </div>
+     </div>
+     <script src="scripts.js"></script>
+ </body>
+ </html>

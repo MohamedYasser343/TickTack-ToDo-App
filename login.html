@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style1.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="info-section">
+            <h1>🍩FORGRT</h1>
+            <p>To Do gives you focus, from work to play.</p>
+        </div>
+        <div class="form-section">
+            <form action="login.html" method="POST">
+                <div class="form-group">
+                    <label for="username"><i class="fa-duotone fa-solid fa-user fa-fade icon"></i>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fa-solid fa-lock icon"></i>Password</label>
+                    <div class="password-wrapper">
+                      <input type="password" id="password" required>
+                      <button id="toggle-password" aria-label="Toggle password visibility">👁️</button>
+                    </div>
+                  </div>
+                <button type="submit" id="login-button">LOGIN <i class="fa-solid fa-right-to-bracket"></i></button>
+                <div class="spinner" id="loadingIndicator" style="display: none;"></div>
+                <hr>
+                <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+            </form>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
